@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_username"
-        android:textStyle="bold"
-        android:background="#f1f1f1"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:text="username"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="加载中..."
-        android:textSize="16dp"
-        android:background="#ffffff"
-        android:id="@+id/tv_reply"/>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/card_list_background">
 
-</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/card_spacing"
+        android:layout_marginLeft="@dimen/card_spacing"
+        android:layout_marginRight="@dimen/card_spacing"
+        android:padding="@dimen/normal_spacing"
+        android:background="@drawable/card_default">
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            android:text="username" />
+
+        <TextView
+            android:id="@+id/tv_reply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="加载中..." />
+
+    </LinearLayout>
+</FrameLayout>

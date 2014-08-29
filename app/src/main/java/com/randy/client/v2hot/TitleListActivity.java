@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class TitleListAcitity extends Activity {
+public class TitleListActivity extends Activity {
 
     private ListView lv_title;
     private TextView tv;
@@ -47,7 +47,7 @@ public class TitleListAcitity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title_list);
         //创建volley请求队列
-        RequestQueue queue= Volley.newRequestQueue(TitleListAcitity.this);
+        RequestQueue queue= Volley.newRequestQueue(TitleListActivity.this);
 
         //使用Volley获取V2EX首页源代码
         StringRequest request = new StringRequest("http://v2ex.com",new Response.Listener<String>() {
@@ -72,13 +72,13 @@ public class TitleListAcitity extends Activity {
                 }
 
                 //适配器
-                lv_title = (ListView)TitleListAcitity.this.findViewById(R.id.lv_title);
-                SimpleAdapter topicAdapter = new SimpleAdapter(TitleListAcitity.this,topicList,R.layout.topic_item,new String[]{"title"},new int[]{R.id.tv_title});
+                lv_title = (ListView)TitleListActivity.this.findViewById(R.id.lv_title);
+                SimpleAdapter topicAdapter = new SimpleAdapter(TitleListActivity.this,topicList,R.layout.topic_item,new String[]{"title"},new int[]{R.id.tv_title});
                 lv_title.setAdapter(topicAdapter);
                 lv_title.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent intent = new Intent(TitleListAcitity.this,ContentActivity.class);
+                        Intent intent = new Intent(TitleListActivity.this,ContentActivity.class);
                         HashMap<String,String> info = (HashMap<String, String>) lv_title.getItemAtPosition(i);
                         //取id和title传递到另一个activity
                         String id = info.get("id");
@@ -98,7 +98,7 @@ public class TitleListAcitity extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //错误提示处理
-                Toast.makeText(TitleListAcitity.this,"请检查网络",Toast.LENGTH_LONG).show();
+                Toast.makeText(TitleListActivity.this,"请检查网络",Toast.LENGTH_LONG).show();
             }
         }){
             //重写getHeader方法，修改User agent
@@ -128,7 +128,7 @@ public class TitleListAcitity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_about) {
-            Intent intent = new Intent(TitleListAcitity.this,AboutActivity.class);
+            Intent intent = new Intent(TitleListActivity.this,AboutActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
