@@ -23,4 +23,8 @@ V2EX 每日热议 for Android
 * [V2EX](http://v2ex.com/t/130456)
 * [我的blog](http://djyde.github.io/2014/08/28/v2hot-release.html)
 
+捐助
+===
+因为还是穷学生，暂时没有能力申请Google Play开发者，如果你希望我能在google play发布，又或者你认为这个app不错，可以捐助一下我，我的支付宝账号是 djyde520@gmail.com。
+
 顺便求美工！！！
