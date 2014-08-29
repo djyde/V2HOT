@@ -1,13 +1,11 @@
 package com.randy.client.v2hot;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
@@ -18,12 +16,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,18 +28,23 @@ import java.util.List;
 
 public class ContentActivity extends Activity {
 
-
-    private TextView tv_title;
-    private TextView tv_content;
     private ProgressBar pb_load;
     private ListView lv_reply;
     private List<HashMap<String,String>> repliesList = new ArrayList<HashMap<String, String>>();
     private TextView headertitle;
     private TextView headercontent;
     private View header;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(false);
+        }
+
         setContentView(R.layout.activity_content);
 
         //获取相应的topic id
@@ -111,6 +112,14 @@ public class ContentActivity extends Activity {
         queue.add(replyRequest);
     }
 
-
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
