@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">V2HOT</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_about">关于作者</string>
+    <string name="title_activity_content">主题回复</string>
+    <string name="title_activity_about">关于作者</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
