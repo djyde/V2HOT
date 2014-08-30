@@ -4,7 +4,7 @@ V2EX 每日热议 for Android
 
 应用截图：
 ===
-![1](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/1.png)     #![2](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/1.png)
+![1](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/1.png =100x20)     #![2](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/2.png)
 
 ![3](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/3.png)
 
