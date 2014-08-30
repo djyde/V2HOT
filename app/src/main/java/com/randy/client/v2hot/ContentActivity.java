@@ -3,11 +3,14 @@ package com.randy.client.v2hot;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ShareActionProvider;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,9 +34,14 @@ public class ContentActivity extends Activity {
     private ProgressBar pb_load;
     private ListView lv_reply;
     private List<HashMap<String,String>> repliesList = new ArrayList<HashMap<String, String>>();
-    private TextView headertitle;
-    private TextView headercontent;
+    private TextView header_title;
+    private TextView header_content;
+    private TextView header_username;
     private View header;
+    private String title;
+    private String url;
+    private String username;
+    private ShareActionProvider shareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +58,15 @@ public class ContentActivity extends Activity {
         //获取相应的topic id
         Intent getIntent = getIntent();
         String id = getIntent.getStringExtra("id");
-        final String title = getIntent.getStringExtra("title");
+        title = getIntent.getStringExtra("title");
+        username = getIntent.getStringExtra("username");
+        url = getIntent.getStringExtra("url");
         header = getLayoutInflater().inflate(R.layout.topic_header,null);
-        headertitle = (TextView)header.findViewById(R.id.header_title);
-        headercontent = (TextView)header.findViewById(R.id.header_content);
-        headertitle.setText(title);
+        header_title = (TextView)header.findViewById(R.id.header_title);
+        header_content = (TextView)header.findViewById(R.id.header_content);
+        header_username = (TextView)header.findViewById(R.id.header_username);
+        header_title.setText(title);
+        header_username.setText(username);
 
         RequestQueue queue = Volley.newRequestQueue(ContentActivity.this);
         //根据API(http://github.com/djyde/v2ex-api)获取topic内容.
@@ -67,7 +79,7 @@ public class ContentActivity extends Activity {
                 try {
                     //获取topic内容
                     String content = response.getJSONObject(0).getString("content");
-                    headercontent.setText(content);
+                    header_content.setText(content);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -117,9 +129,30 @@ public class ContentActivity extends Activity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                return true;
+            //在浏览器中打开URL
+            case R.id.open_browser:
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+                return super.onOptionsItemSelected(item);
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public Intent getShareIntent(){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT,title + "\n" + url + "\n" + "分享自[V2HOT]");
+        intent.setType("text/plain");
+        return intent;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.content_activity, menu);
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+        shareActionProvider = (ShareActionProvider) item.getActionProvider();
+        shareActionProvider.setShareIntent(getShareIntent());
+        return true;
     }
 }
