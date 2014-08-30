@@ -4,7 +4,9 @@ V2EX 每日热议 for Android
 
 应用截图：
 ===
-![1](http://img.wdjimg.com/mms/screenshot/3/3c/4249b835451a4fd2a674df2cd3c093c3_320_568.jpeg)     #![2](http://img.wdjimg.com/mms/screenshot/0/24/50b837b8ea5c078e0deaac4d07cb9240_320_568.jpeg)
+![1](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/1.png)     #![2](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/1.png)
+
+![3](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/3.png)
 
 下载地址：
 ===
@@ -14,8 +16,23 @@ V2EX 每日热议 for Android
 
 用到的开源库
 ===
-* [Jsoup](http://jsoup.org/)
 * [Volley](https://github.com/mcxiaoke/android-volley)
+* [ActionBar-PullToRefresh](http://github.com/chrisbanes/ActionBar-PullToRefresh)
+
+更新日志
+===
+###2014-8-28
+#####1.0发布
+
+###2014-8-30
+#####1.1 Beta
+
+* 下拉刷新
+* 更舒适的UI
+* 分享
+* 在浏览器中打开
+* 主题内显示主题发布者ID 
+
 
 意见反馈
 ===
