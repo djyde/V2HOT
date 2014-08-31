@@ -7,7 +7,7 @@ V2EX 每日热议 for Android
 ![1](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/1.png)
 ![2](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/2.png)
 ![3](https://raw.githubusercontent.com/djyde/v2hot/master/screenshot/3.png)
-下载地址：
+下载地址(Version 1.0)：
 ===
 [豌豆荚](http://www.wandoujia.com/apps/com.randy.client.v2hot)
 
