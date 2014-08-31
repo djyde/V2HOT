@@ -9,11 +9,11 @@ V2EX 每日热议 for Android
 
 ![3](http://img.wdjimg.com/mms/screenshot/d/11/18e224d282a7034bf380f121bf48c11d.jpeg)
 ![4](http://img.wdjimg.com/mms/screenshot/d/4e/93c85d96cefd4782cb1326dca3cf04ed.jpeg)
-下载地址(Version 1.0)：
+下载地址(Version 1.1)：
 ===
 [豌豆荚](http://www.wandoujia.com/apps/com.randy.client.v2hot)
 
-[直接下载APK](http://djyde.github.io/assets/apk/V2HOT.apk)
+[直接下载APK](http://apkcdn.qiniudn.com/v2hot-1-1.apk)
 
 用到的开源库
 ===
@@ -27,6 +27,9 @@ V2EX 每日热议 for Android
 
 ###2014-8-30
 #####1.1 Beta
+
+###2014-8-31
+#####1.1
 
 * 下拉刷新
 * 更舒适的UI
