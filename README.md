@@ -4,11 +4,11 @@ V2EX 每日热议 for Android
 
 应用截图：
 ===
-![1](http://img.wdjimg.com/mms/screenshot/4/68/14b9d5c87946cfe011ae40a6fa9c7684.jpeg)
-![2](http://img.wdjimg.com/mms/screenshot/d/ea/cb1c0ddd4eec2349b0fbeb08d13b3ead.jpeg)
+![1](http://img.wdjimg.com/mms/screenshot/4/68/14b9d5c87946cfe011ae40a6fa9c7684_320_568.jpeg)
+![2](http://img.wdjimg.com/mms/screenshot/d/ea/cb1c0ddd4eec2349b0fbeb08d13b3ead_320_568.jpeg)
 
-![3](http://img.wdjimg.com/mms/screenshot/d/11/18e224d282a7034bf380f121bf48c11d.jpeg)
-![4](http://img.wdjimg.com/mms/screenshot/d/4e/93c85d96cefd4782cb1326dca3cf04ed.jpeg)
+![3](http://img.wdjimg.com/mms/screenshot/d/11/18e224d282a7034bf380f121bf48c11d_320_568.jpeg)
+![4](http://img.wdjimg.com/mms/screenshot/d/4e/93c85d96cefd4782cb1326dca3cf04ed_320_568.jpeg)
 下载地址(Version 1.1)：
 ===
 [豌豆荚](http://www.wandoujia.com/apps/com.randy.client.v2hot)
