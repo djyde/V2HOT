@@ -129,12 +129,12 @@ public class ContentActivity extends Activity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-            //在浏览器中打开URL
+                return true;
             case R.id.open_browser:
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
-                return super.onOptionsItemSelected(item);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
