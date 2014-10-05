@@ -20,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +29,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import adapter.ReplyAdapter;
 
 
 public class ContentActivity extends Activity {
@@ -54,6 +58,10 @@ public class ContentActivity extends Activity {
         }
 
         setContentView(R.layout.activity_content);
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
+
 
         //获取相应的topic id
         Intent getIntent = getIntent();
@@ -102,6 +110,13 @@ public class ContentActivity extends Activity {
                     try {
                         map.put("content",response.getJSONObject(i).getString("content"));
                         map.put("username",response.getJSONObject(i).getJSONObject("member").getString("username"));
+                        //判断是否为gravatar
+                        String avatar = response.getJSONObject(i).getJSONObject("member").getString("avatar_mini");
+                        if (String.valueOf(avatar.charAt(0)).equals("/")){
+                            map.put("avatar","http:" + response.getJSONObject(i).getJSONObject("member").getString("avatar_mini"));
+                        }else{
+                            map.put("avatar",response.getJSONObject(i).getJSONObject("member").getString("avatar_mini"));
+                        }
                         repliesList.add(map);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -110,8 +125,7 @@ public class ContentActivity extends Activity {
                 }//遍历结束
                 lv_reply = (ListView)ContentActivity.this.findViewById(R.id.lv_reply);
                 lv_reply.addHeaderView(header);
-                SimpleAdapter replyAdapter = new SimpleAdapter(ContentActivity.this,repliesList,R.layout.reply_item,new String[]{"content","username"},new int[]{R.id.tv_reply,R.id.tv_username});
-                lv_reply.setAdapter(replyAdapter);
+                lv_reply.setAdapter(new ReplyAdapter(ContentActivity.this,repliesList,username));
             }
         },new Response.ErrorListener() {
             @Override
