@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Created by randy on 14-10-4.
  */
@@ -30,10 +33,14 @@ public class ReplyAdapter extends BaseAdapter{
         this.username = username;
     }
 
-    private class ViewHolder{
-        TextView username;
-        TextView content;
-        ImageView avatar;
+    static class ViewHolder{
+        @InjectView(R.id.tv_username) TextView username;
+        @InjectView(R.id.tv_reply) TextView content;
+        @InjectView(R.id.iv_avatar) ImageView avatar;
+
+        public ViewHolder(View view){
+            ButterKnife.inject(this,view);
+        }
     }
 
     @Override
@@ -57,16 +64,14 @@ public class ReplyAdapter extends BaseAdapter{
         LayoutInflater mInflater = LayoutInflater.from(context);
 
         if(view == null){
-            viewHolder = new ViewHolder();
-            view = mInflater.inflate(R.layout.reply_item,null);
-            viewHolder.username = (TextView)view.findViewById(R.id.tv_username);
-            viewHolder.content = (TextView)view.findViewById(R.id.tv_reply);
-            viewHolder.avatar = (ImageView)view.findViewById(R.id.iv_avatar);
+            view = mInflater.inflate(R.layout.reply_item,viewGroup,false);
+            viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
-
-        }else{
+        } else {
             viewHolder = (ViewHolder)view.getTag();
         }
+
+
 
         String usr_name = list.get(i).get("username");
         if(usr_name.equals(this.username)){
@@ -82,8 +87,6 @@ public class ReplyAdapter extends BaseAdapter{
                 .build();
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.displayImage(list.get(i).get("avatar"),viewHolder.avatar,options);
-
-
 
         return view;
     }
