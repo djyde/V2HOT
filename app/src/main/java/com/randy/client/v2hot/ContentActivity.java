@@ -73,6 +73,7 @@ public class ContentActivity extends Activity {
         header_title = (TextView)header.findViewById(R.id.header_title);
         header_content = (TextView)header.findViewById(R.id.header_content);
         header_username = (TextView)header.findViewById(R.id.header_username);
+
         header_title.setText(title);
         header_username.setText(username);
 
