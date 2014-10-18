@@ -1,8 +1,9 @@
 package com.randy.client.v2hot;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,35 +25,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
-
-public class TitleListActivity extends Activity {
+public class TitleListActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title_list);
 
-        final PullToRefreshLayout pullToRefreshLayout = (PullToRefreshLayout) findViewById(R.id.pull);
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.pull);
 
         final List<HashMap<String, String>> topicList = new ArrayList<HashMap<String, String>>();
 
-        final SimpleAdapter topicAdapter = new SimpleAdapter(
+        final SimpleAdapter topicsAdapter = new SimpleAdapter(
                 this,
                 topicList,
                 R.layout.topic_item,
                 new String[]{"title"},
-                new int[]{R.id.tv_title}
+                new int[]{R.id.title}
         );
 
-        final ListView lv_title = (ListView) findViewById(R.id.lv_title);
-        lv_title.setAdapter(topicAdapter);
-        lv_title.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final ListView topicsView = (ListView) findViewById(R.id.topics);
+
+        topicsView.setAdapter(topicsAdapter);
+        topicsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                HashMap<String, String> info = (HashMap<String, String>) lv_title.getItemAtPosition(i);
+                HashMap<String, String> info = (HashMap<String, String>) topicsView.getItemAtPosition(i);
                 String id = info.get("id");
                 String title = info.get("title");
                 String username = info.get("username");
@@ -90,8 +88,8 @@ public class TitleListActivity extends Activity {
                             }
                         }
 
-                        topicAdapter.notifyDataSetChanged();
-                        pullToRefreshLayout.setRefreshComplete();
+                        topicsAdapter.notifyDataSetChanged();
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 },
                 new Response.ErrorListener() {
@@ -102,23 +100,20 @@ public class TitleListActivity extends Activity {
                 }
         );
 
-        ActionBarPullToRefresh.from(this)
-                .allChildrenArePullable()
-                .listener(new OnRefreshListener() {
-                    @Override
-                    public void onRefreshStarted(View view) {
-                        queue.add(request);
-                    }
-                })
-                .setup(pullToRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                queue.add(request);
+            }
+        });
 
         queue.add(request);
-        pullToRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.title_list_acitity, menu);
+        getMenuInflater().inflate(R.menu.title_list_activity, menu);
         return true;
     }
 

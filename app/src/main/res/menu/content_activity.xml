@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/open_browser"
         android:title="在浏览器中打开"
-        android:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_item_share"
-        android:showAsAction="ifRoom"
         android:title="share"
-        android:actionProviderClass="android.widget.ShareActionProvider"/>
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"
+        app:showAsAction="ifRoom" />
 </menu>
