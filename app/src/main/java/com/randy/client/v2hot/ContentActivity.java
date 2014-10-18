@@ -1,17 +1,17 @@
 package com.randy.client.v2hot;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.ShareActionProvider;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,12 +32,11 @@ import java.util.List;
 
 import adapter.ReplyAdapter;
 
-
-public class ContentActivity extends Activity {
+public class ContentActivity extends ActionBarActivity {
 
     private ProgressBar pb_load;
     private ListView lv_reply;
-    private List<HashMap<String,String>> repliesList = new ArrayList<HashMap<String, String>>();
+    private List<HashMap<String, String>> repliesList = new ArrayList<HashMap<String, String>>();
     private TextView header_title;
     private TextView header_content;
     private TextView header_username;
@@ -69,21 +68,21 @@ public class ContentActivity extends Activity {
         title = getIntent.getStringExtra("title");
         username = getIntent.getStringExtra("username");
         url = getIntent.getStringExtra("url");
-        header = getLayoutInflater().inflate(R.layout.topic_header,null);
-        header_title = (TextView)header.findViewById(R.id.header_title);
-        header_content = (TextView)header.findViewById(R.id.header_content);
-        header_username = (TextView)header.findViewById(R.id.header_username);
+        header = getLayoutInflater().inflate(R.layout.topic_header, null);
+        header_title = (TextView) header.findViewById(R.id.header_title);
+        header_content = (TextView) header.findViewById(R.id.header_content);
+        header_username = (TextView) header.findViewById(R.id.header_username);
 
         header_title.setText(title);
         header_username.setText(username);
 
         RequestQueue queue = Volley.newRequestQueue(ContentActivity.this);
         //根据API(http://github.com/djyde/v2ex-api)获取topic内容.
-        JsonArrayRequest topicInfoRequest = new JsonArrayRequest("http://www.v2ex.com/api/topics/show.json?id=" + id,new Response.Listener<JSONArray>() {
+        JsonArrayRequest topicInfoRequest = new JsonArrayRequest("http://www.v2ex.com/api/topics/show.json?id=" + id, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
-                pb_load = (ProgressBar)ContentActivity.this.findViewById(R.id.pb_load);
+                pb_load = (ProgressBar) ContentActivity.this.findViewById(R.id.pb_load);
                 pb_load.setVisibility(View.GONE);
                 try {
                     //获取topic内容
@@ -93,30 +92,30 @@ public class ContentActivity extends Activity {
                     e.printStackTrace();
                 }
             }
-        },new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //处理错误
-                Toast.makeText(ContentActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(ContentActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
         //获取回复
-        JsonArrayRequest replyRequest = new JsonArrayRequest("http://www.v2ex.com/api/replies/show.json?topic_id=" + id,new Response.Listener<JSONArray>() {
+        JsonArrayRequest replyRequest = new JsonArrayRequest("http://www.v2ex.com/api/replies/show.json?topic_id=" + id, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 //遍历所有回复
-                for (int i=0;i<response.length();i++){
-                    HashMap<String,String> map = new HashMap<String, String>();
+                for (int i = 0; i < response.length(); i++) {
+                    HashMap<String, String> map = new HashMap<String, String>();
                     try {
-                        map.put("content",response.getJSONObject(i).getString("content"));
-                        map.put("username",response.getJSONObject(i).getJSONObject("member").getString("username"));
+                        map.put("content", response.getJSONObject(i).getString("content"));
+                        map.put("username", response.getJSONObject(i).getJSONObject("member").getString("username"));
                         //判断是否为gravatar
                         String avatar = response.getJSONObject(i).getJSONObject("member").getString("avatar_mini");
-                        if (String.valueOf(avatar.charAt(0)).equals("/")){
-                            map.put("avatar","http:" + response.getJSONObject(i).getJSONObject("member").getString("avatar_mini"));
-                        }else{
-                            map.put("avatar",response.getJSONObject(i).getJSONObject("member").getString("avatar_mini"));
+                        if (String.valueOf(avatar.charAt(0)).equals("/")) {
+                            map.put("avatar", "http:" + response.getJSONObject(i).getJSONObject("member").getString("avatar_mini"));
+                        } else {
+                            map.put("avatar", response.getJSONObject(i).getJSONObject("member").getString("avatar_mini"));
                         }
                         repliesList.add(map);
                     } catch (JSONException e) {
@@ -124,14 +123,14 @@ public class ContentActivity extends Activity {
                     }
 
                 }//遍历结束
-                lv_reply = (ListView)ContentActivity.this.findViewById(R.id.lv_reply);
+                lv_reply = (ListView) ContentActivity.this.findViewById(R.id.lv_reply);
                 lv_reply.addHeaderView(header);
-                lv_reply.setAdapter(new ReplyAdapter(ContentActivity.this,repliesList,username));
+                lv_reply.setAdapter(new ReplyAdapter(ContentActivity.this, repliesList, username));
             }
-        },new Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ContentActivity.this,"请检查网络",Toast.LENGTH_LONG).show();
+                Toast.makeText(ContentActivity.this, "请检查网络", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -155,9 +154,9 @@ public class ContentActivity extends Activity {
         }
     }
 
-    public Intent getShareIntent(){
+    public Intent getShareIntent() {
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT,title + "\n" + url + "\n" + "分享自[V2HOT]");
+        intent.putExtra(Intent.EXTRA_TEXT, title + "\n" + url + "\n" + "分享自[V2HOT]");
         intent.setType("text/plain");
         return intent;
     }
@@ -166,8 +165,9 @@ public class ContentActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.content_activity, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
-        shareActionProvider = (ShareActionProvider) item.getActionProvider();
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
         shareActionProvider.setShareIntent(getShareIntent());
         return true;
     }
+
 }
