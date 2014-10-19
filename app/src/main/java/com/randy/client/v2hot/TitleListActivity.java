@@ -63,6 +63,7 @@ public class TitleListActivity extends ActionBarActivity {
                 intent.putExtra("title", topic.title);
                 intent.putExtra("username", topic.member.username);
                 intent.putExtra("url", topic.url);
+                intent.putExtra("content", topic.content);
                 startActivity(intent);
             }
         });
