@@ -6,15 +6,8 @@
     android:background="@color/card_list_background"
     android:orientation="vertical">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/normal_spacing"
-        android:id="@+id/pb_load" />
-
     <ListView
-        android:id="@+id/lv_reply"
+        android:id="@+id/replies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"

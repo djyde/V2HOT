@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 21
+    buildToolsVersion "21.0.1"
 
     defaultConfig {
         applicationId "com.randy.client.v2hot"
         minSdkVersion 14
-        targetSdkVersion 20
-        versionCode 2
-        versionName "1.1"
+        targetSdkVersion 21
+        versionCode 3
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -21,6 +21,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //noinspection GradleDependency,GradleDynamicVersion
+    compile 'com.android.support:appcompat-v7:+'
+
     compile 'com.mcxiaoke.volley:library:1.0.6'
-    compile 'com.github.chrisbanes.actionbarpulltorefresh:library:+'
+    compile 'com.google.code.gson:gson:2.3'
+
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+    compile 'com.jakewharton:butterknife:5.1.2'
 }
