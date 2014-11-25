@@ -4,4 +4,7 @@
     <color name="card_item_background_default">#ffffff</color>
     <color name="card_item_background_pressed">#eeeeee</color>
     <color name="card_item_shadow">#10000000</color>
+
+    <!-- wml -->
+    <color name="node">#ffd8d8d8</color>
 </resources>

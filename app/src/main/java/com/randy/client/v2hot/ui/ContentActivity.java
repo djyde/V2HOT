@@ -1,4 +1,4 @@
-package com.randy.client.v2hot;
+package com.randy.client.v2hot.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +21,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.randy.client.v2hot.R;
+import com.randy.client.v2hot.adapter.RepliesAdapter;
 import com.v2ex.api.GsonRequest;
 import com.v2ex.api.ReplyList;
 

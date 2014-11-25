@@ -1,7 +1,9 @@
-package com.randy.client.v2hot;
+package com.randy.client.v2hot.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+
+import com.randy.client.v2hot.R;
 
 public class AboutActivity extends ActionBarActivity {
 

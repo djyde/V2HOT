@@ -1,19 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/card_list_background">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/tv_replies"
         android:layout_marginLeft="@dimen/card_spacing"
         android:layout_marginRight="@dimen/card_spacing"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:padding="@dimen/normal_spacing"
-        android:textSize="16sp"
-        android:background="@drawable/card"
-        android:id="@+id/title" />
-</FrameLayout>
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/card">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/card_spacing"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_avatar"
+            android:padding="@dimen/card_spacing"
+            android:text="这是测试文字"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_node"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/card_spacing"
+            android:layout_marginBottom="@dimen/margin_Bottom"
+            android:layout_toRightOf="@+id/iv_avatar"
+            android:background="@color/node"
+            android:text="二手交易"
+            android:textSize="12sp"
+            android:layout_below="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_dot1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dot_margin"
+            android:layout_marginRight="@dimen/dot_margin"
+            android:layout_marginBottom="@dimen/margin_Bottom"
+            android:text="·"
+            android:textSize="12sp"
+            android:layout_toRightOf="@id/tv_node"
+            android:layout_below="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_creater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="system"
+            android:textSize="12sp"
+            android:layout_toRightOf="@id/tv_dot1"
+            android:layout_below="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_dot2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dot_margin"
+            android:layout_marginRight="@dimen/dot_margin"
+            android:layout_marginBottom="@dimen/margin_Bottom"
+            android:text="·"
+            android:textSize="12sp"
+            android:layout_toRightOf="@id/tv_creater"
+            android:layout_below="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_Bottom"
+            android:text="10分钟前"
+            android:textSize="12sp"
+            android:layout_toRightOf="@id/tv_dot2"
+            android:layout_below="@+id/tv_title" />
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_replies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="40"
+        android:textColor="@color/card_item_background_default"
+        android:background="@drawable/textview_style"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/card_spacing"
+        android:layout_centerVertical="true"/>
+
+
+</RelativeLayout>
