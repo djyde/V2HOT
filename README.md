@@ -2,6 +2,10 @@ V2HOT
 ===
 V2EX 每日热议 for Android
 
+DEPRECATED
+===
+This project had refacted with redesign to [V2HOT Plus](https://github.com/djyde/V2HOT-Plus)
+
 应用截图：
 ===
 
