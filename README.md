@@ -26,15 +26,15 @@ This project had refacted with redesign to [V2HOT Plus](https://github.com/djyde
 
 更新日志
 ===
-###2014-10-5
-#####1.2
+### 2014-10-5
+##### 1.2
 
 * 评论区显示用户头像
 * 评论区楼主标识
 * 修复actionbar点击返回会打开URL的bug
 
-###2014-8-31
-#####1.1
+### 2014-8-31
+##### 1.1
 
 * 下拉刷新
 * 更舒适的UI
@@ -42,11 +42,11 @@ This project had refacted with redesign to [V2HOT Plus](https://github.com/djyde
 * 在浏览器中打开
 * 主题内显示主题发布者ID 
 
-###2014-8-30
-#####1.1 Beta
+### 2014-8-30
+##### 1.1 Beta
 
-###2014-8-28
-#####1.0发布
+### 2014-8-28
+##### 1.0发布
 
 意见反馈
 ===
