@@ -1,4 +1,8 @@
 <resources>
     <dimen name="normal_spacing">16dp</dimen>
     <dimen name="card_spacing">8dp</dimen>
+
+    <dimen name="avatar_size">45dp</dimen>
+    <dimen name="margin_Bottom">4dp</dimen>
+    <dimen name="dot_margin">4dp</dimen>
 </resources>

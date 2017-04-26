@@ -1,4 +1,4 @@
-package com.randy.client.v2hot;
+package com.randy.client.v2hot.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +19,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.randy.client.v2hot.R;
+import com.randy.client.v2hot.app.MyVolley;
+import com.randy.client.v2hot.util.RelativeDateFormat;
 import com.v2ex.api.GsonRequest;
 import com.v2ex.api.Topic;
 import com.v2ex.api.TopicList;
+
+import java.util.Date;
 
 public class TitleListActivity extends ActionBarActivity {
 
@@ -43,8 +49,27 @@ public class TitleListActivity extends ActionBarActivity {
                     convertView = inflater.inflate(R.layout.topic_item, parent, false);
                 }
 
-                TextView title = (TextView) convertView.findViewById(R.id.title);
+                ImageLoader imageLoader = MyVolley.getImageLoader();
+
+                NetworkImageView avatar = (NetworkImageView) convertView.findViewById(R.id.iv_avatar);
+                TextView title = (TextView) convertView.findViewById(R.id.tv_title);
+                TextView node = (TextView) convertView.findViewById(R.id.tv_node);
+                TextView creater = (TextView) convertView.findViewById(R.id.tv_creater);
+                TextView date = (TextView) convertView.findViewById(R.id.tv_date);
+                TextView replies = (TextView) convertView.findViewById(R.id.tv_replies);
+
+                avatar.setDefaultImageResId(R.drawable.avatar_defult);
+                avatar.setErrorImageResId(R.drawable.avatar_defult);
+                avatar.setImageUrl("http:" + getItem(position).member.avatarNormal, imageLoader);
+
                 title.setText(getItem(position).title);
+                node.setText(getItem(position).node.title);
+                creater.setText(getItem(position).member.username);
+
+                Date d = new Date(Long.parseLong(getItem(position).created) * 1000);
+                date.setText(RelativeDateFormat.format(d));
+
+                replies.setText(getItem(position).replies);
 
                 return convertView;
             }
@@ -68,8 +93,8 @@ public class TitleListActivity extends ActionBarActivity {
             }
         });
 
-        //创建volley请求队列
-        final RequestQueue queue = Volley.newRequestQueue(this);
+        //获得volley请求队列
+        final RequestQueue queue = MyVolley.getRequestQueue();
 
         //根据API获取热议主题
         final GsonRequest<TopicList> request = new GsonRequest<TopicList>(

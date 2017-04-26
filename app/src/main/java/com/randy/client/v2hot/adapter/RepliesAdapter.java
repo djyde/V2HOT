@@ -1,4 +1,4 @@
-package com.randy.client.v2hot;
+package com.randy.client.v2hot.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.randy.client.v2hot.R;
 import com.v2ex.api.Reply;
 
 import butterknife.ButterKnife;
